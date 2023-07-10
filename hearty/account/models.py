@@ -55,5 +55,5 @@ class User(AbstractUser):
 
     class Meta:
         verbose_name = 'Аккаунт'
-        verbose_name_plural = 'Аккаунт'
+        verbose_name_plural = 'Аккаунты'
 

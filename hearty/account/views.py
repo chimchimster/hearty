@@ -1,5 +1,5 @@
 from .models import User
-from .forms import RegisterUserForm, LoginUserForm
+from .forms import RegisterUserForm
 
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
@@ -13,6 +13,4 @@ class RegisterUser(CreateView):
 
 
 class LoginUser(LoginView):
-    form_class = LoginUserForm
     template_name = 'account/login.html'
-

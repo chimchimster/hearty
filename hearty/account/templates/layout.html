@@ -19,4 +19,10 @@
         {% endblock %}
     </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        {% block domready %}
+        {% endblock %}
+    });
+</script>
 </html>

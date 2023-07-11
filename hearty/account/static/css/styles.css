@@ -10,7 +10,7 @@ h1, h2, h3, h4 {
 
 .header {
   height: 150px;
-  background-color: #FF7272;
+  background-color: #04b622;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -33,4 +33,46 @@ h1, h2, h3, h4 {
 
 .greeting {
   margin: 30px;
+}
+
+.image-slides {
+  margin: 30px;
+  display: none;
+  border-radius: 20px;
+  width: 480px;
+  height: 640px;
+  object-fit: cover;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+#display-left, #display-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 54px;
+}
+
+#display-left {
+  left: 30px;
+}
+
+#display-right {
+  right: 30px;
+}
+
+.profile-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.profile-description {
+  padding: 30px;
 }

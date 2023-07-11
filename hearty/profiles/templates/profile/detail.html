@@ -1,4 +1,6 @@
 {% extends 'layout.html' %}
+{% load calc_age %}
+{% load define_gender %}
 
 {% block title %}
 
@@ -11,11 +13,59 @@
     </div>
     <div class="profile-detail">
         <div class="images-list">
-            {% with image=profile.images.all %}
-                {% for img in image %}
-                    <img src="{% url img.url %}">
-                {% endfor %}
-            {% endwith %}
+            <div class="image-container">
+                {% with image=profile.images.all %}
+                    {% for img in image %}
+                        <img class="image-slides" src="{{ img.image.url }}">
+                    {% endfor %}
+                {% endwith %}
+                <button id="display-left">&#10094;</button>
+                <button id="display-right">&#10095;</button>
+            </div>
+        </div>
+        <div class="profile-description">
+            <p>Описание профиля: {{ profile.description }}</p>
+            <p>Возраст: {{ object.user.bdate|calc_age }}</p>
+            <p>Пол: {{ profile.gender|gender }}</p>
         </div>
     </div>
+{% endblock %}
+
+{% block domready %}
+
+    let slideIndex = 1;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function showDivs(n) {
+        let img = document.getElementsByClassName('image-slides');
+
+        if (n > img.length) {
+            slideIndex = 1;
+        }
+
+        if (n < 1) {
+            slideIndex = img.length;
+        }
+
+        for (let i = 0; i < img.length; i++) {
+            img[i].style.display = 'none';
+        }
+        img[slideIndex - 1].style.display = 'block';
+    }
+
+    let displayLeftBtn = document.getElementById('display-left');
+    let displayRightBtn = document.getElementById('display-right');
+
+    displayLeftBtn.addEventListener('click', function() {
+        plusDivs(-1);
+    });
+
+    displayRightBtn.addEventListener('click', function() {
+        plusDivs(1);
+    });
+
 {% endblock %}

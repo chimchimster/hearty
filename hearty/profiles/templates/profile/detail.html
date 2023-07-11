@@ -27,6 +27,7 @@
             <p>Описание профиля: {{ profile.description }}</p>
             <p>Возраст: {{ object.user.bdate|calc_age }}</p>
             <p>Пол: {{ profile.gender|gender }}</p>
+            <p>Предпочтения: {{ profile.preferences|gender }}</p>
         </div>
     </div>
 {% endblock %}

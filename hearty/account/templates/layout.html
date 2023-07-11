@@ -13,6 +13,9 @@
             <li><a href="#">Понравившиеся мне</a></li>
             <li><a href="#">Я нравлюсь</a></li>
         </ul>
+        <ul class="nav-menu">
+            <li><a href="{% url 'account:account-detail' user.pk %}">Настройки</a></li>
+        </ul>
     </div>
     <div class="content">
         {% block body %}

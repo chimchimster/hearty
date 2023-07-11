@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from phone_field import PhoneField
 from django.contrib.auth.models import AbstractUser, BaseUserManager
@@ -53,6 +54,9 @@ class User(AbstractUser):
 
     def has_module_perm(self, app_label):
         return self.is_staff
+
+    def get_absolute_url(self):
+        return reverse('account:account-detail', args=[self.pk])
 
     class Meta:
         verbose_name = 'Аккаунт'

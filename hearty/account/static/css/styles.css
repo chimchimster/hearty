@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
 body {
-  font-family: Fantasy, Sans-serif, serif;
+  font-family: Muli, sans-serif, serif;
   padding: 0px;
   margin: 0px;
 }
@@ -9,11 +11,13 @@ h1, h2, h3, h4 {
 }
 
 .header {
-  height: 150px;
-  background-color: #04b622;
+  height: 55px;
+  background-color: #ad69ab;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 0px;
 }
 
 .nav-menu ul {
@@ -75,4 +79,15 @@ h1, h2, h3, h4 {
 
 .profile-description {
   padding: 30px;
+  font-size: 30px;
+}
+
+.email-detail {
+  padding: 30px;
+}
+
+.form-input {
+  font-size: 30px;
+  border-radius: 15px;
+  display: block;
 }

@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block body %}
+  <div class="account-details">
+      <div class="email-detail">
+          Ваша текущая почта: {{ object.email }}
+          <form action="{% url 'account:change-email' %}" method="post">
+              {% csrf_token %}
+              {{ email_change.as_p }}
+              <input type="submit" value="Сменить почту">
+          </form>
+          <div class="errors">
+              {% if messages %}
+                {% for message in messages %}
+                    <ul class="messages">
+                        <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    </ul>
+                {% endfor %}
+              {% endif %}
+          </div>
+      </div>
+      <div class="password-detail">
+
+      </div>
+  </div>
+{% endblock %}

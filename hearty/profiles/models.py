@@ -1,5 +1,7 @@
 from django.db import models
 from account.models import User
+from django.urls import reverse
+
 from .utils import get_upload_path
 
 
@@ -17,6 +19,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
+
+    def get_absolute_url(self):
+        return reverse('profile', args=[self.pk])
 
     class Meta:
         verbose_name = 'Профиль'

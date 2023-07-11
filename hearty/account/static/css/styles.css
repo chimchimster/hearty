@@ -1,0 +1,36 @@
+body {
+  font-family: Fantasy, Sans-serif, serif;
+  padding: 0px;
+  margin: 0px;
+}
+
+h1, h2, h3, h4 {
+  font-family: Fantasy, Sans-serif, serif;
+}
+
+.header {
+  height: 150px;
+  background-color: #FF7272;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.nav-menu ul {
+  list-style: none;
+}
+
+.nav-menu li {
+  display: inline;
+  padding: 10px;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  text-decoration-style: none;
+  color: #f9e277;
+}
+
+.greeting {
+  margin: 30px;
+}

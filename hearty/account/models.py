@@ -31,6 +31,7 @@ class User(AbstractUser):
     password = models.CharField(max_length=128, verbose_name='Пароль')
     first_name = models.CharField(max_length=30, verbose_name='Имя')
     last_name = models.CharField(max_length=30, verbose_name='Фамилия')
+    bdate = models.DateField(auto_now=False, auto_now_add=False, verbose_name='День рождения')
     phone_number = PhoneField(blank=False, help_text='Номер телефона', verbose_name='Контактный номер телефона')
     is_active = models.BooleanField(default=True, verbose_name='Активный')
     is_staff = models.BooleanField(default=False, verbose_name='Администратор')

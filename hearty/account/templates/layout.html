@@ -1,11 +1,22 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    {% block body %}
-    {% endblock %}
+    <div class="header">
+        <ul class="nav-menu">
+            <li><a href="{% url 'profiles:profile_view' user.pk %}">Мой профиль</a></li>
+            <li><a href="#">Понравившиеся мне</a></li>
+            <li><a href="#">Я нравлюсь</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        {% block body %}
+        {% endblock %}
+    </div>
 </body>
 </html>

@@ -9,3 +9,4 @@ def get_upload_path(instance, filename):
     base_path = f'media/{email}/{current_date}'
 
     return os.path.join(base_path, filename)
+

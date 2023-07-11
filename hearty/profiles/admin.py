@@ -4,9 +4,9 @@ from .models import Profile, Images
 
 @admin.register(Profile)
 class AdminProfile(admin.ModelAdmin):
-    list_display = ['user', 'description', 'gender', 'preferences']
+    list_display = ['pk', 'user', 'description', 'gender', 'preferences']
 
 
 @admin.register(Images)
-class AdminProfile(admin.ModelAdmin):
+class AdminImage(admin.ModelAdmin):
     list_display = ['profile', 'image']

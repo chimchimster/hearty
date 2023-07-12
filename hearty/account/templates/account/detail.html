@@ -11,20 +11,25 @@
           <form action="{% url 'account:change-email' %}" method="post">
               {% csrf_token %}
               {{ email_change.as_p }}
-              <input type="submit" value="Сменить почту">
+              <input class="input-submit" type="submit" value="Сменить почту">
           </form>
-          <div class="errors">
-              {% if messages %}
-                {% for message in messages %}
-                    <ul class="messages">
-                        <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                    </ul>
-                {% endfor %}
-              {% endif %}
-          </div>
       </div>
       <div class="password-detail">
-
+          Желаете сменить пароль?
+          <form action="{% url 'account:change-password' %}" method="post">
+              {% csrf_token %}
+              {{ password_change.as_p }}
+              <input class="input-submit" type="submit" value="Сменить пароль">
+          </form>
+      </div>
+      <div class="errors">
+          {% if messages %}
+            {% for message in messages %}
+                <ul class="messages">
+                    <li {% if message.tags %}class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                </ul>
+            {% endfor %}
+          {% endif %}
       </div>
   </div>
 {% endblock %}

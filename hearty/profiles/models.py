@@ -16,6 +16,7 @@ class Profile(models.Model):
     description = models.TextField(verbose_name='Описание профиля')
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, verbose_name='Пол')
     preferences = models.CharField(max_length=1, choices=GENDER_CHOICES, verbose_name='Предпочтения')
+    city = models.ForeignKey('Cities', on_delete=models.SET_NULL, null=True, verbose_name='Город')
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name}'
@@ -37,5 +38,24 @@ class Images(models.Model):
         verbose_name_plural = 'Изображения'
 
 
+class Cities(models.Model):
+    city = models.CharField(max_length=50, verbose_name='Название города')
+    country = models.ForeignKey('Countries', on_delete=models.SET_NULL, null=True, verbose_name='Страна')
+
+    class Meta:
+        verbose_name = 'Город'
+        verbose_name_plural = 'Города'
+
+    def __str__(self):
+        return self.city
 
 
+class Countries(models.Model):
+    country = models.CharField(max_length=50, verbose_name='Название страны')
+
+    class Meta:
+        verbose_name = 'Страна'
+        verbose_name_plural = 'Страны'
+
+    def __str__(self):
+        return self.country

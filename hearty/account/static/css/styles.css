@@ -114,32 +114,56 @@ h1, h2, h3, h4 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 400px;
-  height: 400px;
+  width: 100px;
+  height: 100px;
   outline-offset: -12px;
   background: url("/static/imgs/upload-image.svg");
   background-size: cover;
   color: #ad69ab;
-  filter: brightness(70%) sepia(100%);
+  font-size: 15px;
 }
 
 #upload-image img {
-  width: 40%;
+  width: 100%;
   margin-bottom: 20px;
   user-select: none;
 }
 
-
-.upload-container div {
-
-}
-
-#upload-container input[type=submit]:focus {
-     outline: -webkit-focus-ring-color auto 5px;
+#file-input {
+  content: '';
 }
 
 #file-input {
-  font-size: 18px;
-  position: relative;
+    content: "Выберите изображение";
+    margin: 30 5px;
+    padding: 15px;
+    top: 0px;
+    left: 30px;
+    display: block;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    border-radius: 3px;
+    cursor: grab;
+    visibility: visible;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
 
+input[type="submit"] {
+  font-size: 13px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: white;
+  background: #ad69ab;
+}
+
+.container-profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.upload-container {
+  margin-left: 50px;
 }

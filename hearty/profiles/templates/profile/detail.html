@@ -18,6 +18,11 @@
                 {% with image=profile.images.all %}
                     {% for img in image %}
                         <img class="image-slides" src="{{ img.image.url }}">
+                        <form class="delete-image-form" method="POST" action="{% url 'profiles:delete_image' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="image_id" value="{{ img.id }}">
+                                <button type="submit" class="delete-image-button">Delete</button>
+                        </form>
                     {% endfor %}
                 {% endwith %}
                 <button id="display-left">&#10094;</button>

@@ -16,14 +16,18 @@
         <div class="images-list">
             <div class="image-container">
                 {% with image=profile.images.all %}
-                    {% for img in image %}
-                        <img class="image-slides" src="{{ img.image.url }}">
-                        <form class="delete-image-form" method="POST" action="{% url 'profiles:delete_image' %}">
+                    {% if not image %}
+                        <img class="no-image" src="{% static 'imgs/no-image.png' %}">
+                    {% else %}
+                        {% for img in image %}
+                            <img class="image-slides" src="{{ img.image.url }}">
+                            <form class="delete-image-form" method="POST" action="{% url 'profiles:delete_image' %}">
                                 {% csrf_token %}
                                 <input type="hidden" name="image_id" value="{{ img.id }}">
-                                <button type="submit" class="delete-image-button">Delete</button>
-                        </form>
-                    {% endfor %}
+                                <button type="submit" class="delete-image-button">Удалить изображение</button>
+                            </form>
+                        {% endfor %}
+                    {% endif %}
                 {% endwith %}
                 <button id="display-left">&#10094;</button>
                 <button id="display-right">&#10095;</button>
@@ -38,7 +42,6 @@
                 <p>Предпочтения: {{ profile.preferences|gender }}</p>
             </div>
             <div class="upload-container">
-
                 <form id="upload-image" action="{% url 'profiles:upload_image' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ upload_image.as_p }}
@@ -60,6 +63,7 @@
 
     function showDivs(n) {
         let img = document.getElementsByClassName('image-slides');
+        let btn = document.getElementsByClassName('delete-image-button');
 
         if (n > img.length) {
             slideIndex = 1;
@@ -71,8 +75,10 @@
 
         for (let i = 0; i < img.length; i++) {
             img[i].style.display = 'none';
+            btn[i].style.display = 'none';
         }
         img[slideIndex - 1].style.display = 'block';
+        btn[slideIndex - 1].style.display = 'block';
     }
 
     let displayLeftBtn = document.getElementById('display-left');

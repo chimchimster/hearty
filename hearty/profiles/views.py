@@ -1,11 +1,10 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import redirect
-from django.urls import reverse_lazy, reverse
 from django.views import View
 
 from .models import Profile, Images
 from .forms import UploadImageForm
-from django.views.generic import DetailView, CreateView
+from django.views.generic import DetailView, CreateView, ListView
 
 
 class ProfileView(DetailView):
@@ -45,3 +44,13 @@ class DeleteImageView(View):
             return redirect('profiles:profile_view', pk=request.user.pk)
         except Images.DoesNotExist:
             return HttpResponse('Image does not exist.')
+
+
+class Swipes(ListView):
+    model = Profile
+    template_name = 'swipes.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
+
+        return context

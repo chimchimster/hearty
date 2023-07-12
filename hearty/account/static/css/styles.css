@@ -130,10 +130,6 @@ h1, h2, h3, h4 {
 }
 
 #file-input {
-  content: '';
-}
-
-#file-input {
     content: "Выберите изображение";
     margin: 30 5px;
     padding: 15px;
@@ -166,4 +162,27 @@ input[type="submit"] {
 
 .upload-container {
   margin-left: 50px;
+}
+
+.delete-image-button {
+  position: absolute;
+  top: 90%;
+  left: 190px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: white;
+  font-size: 15px;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.no-image {
+  margin: 30px;
+  display: none;
+  border-radius: 20px;
+  width: 480px;
+  height: 640px;
+  object-fit: cover;
 }

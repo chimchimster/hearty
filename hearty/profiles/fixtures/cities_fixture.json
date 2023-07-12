@@ -1,0 +1,242 @@
+[
+  {
+    "model": "profiles.cities",
+    "pk": 1,
+    "fields": {
+      "city": "Астана",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 2,
+    "fields": {
+      "city": "Алматы",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 3,
+    "fields": {
+      "city": "Шымкент",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 4,
+    "fields": {
+      "city": "Караганда",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 5,
+    "fields": {
+      "city": "Актобе",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 6,
+    "fields": {
+      "city": "Тараз",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 7,
+    "fields": {
+      "city": "Павлодар",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 8,
+    "fields": {
+      "city": "Усть-Каменогорск",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 9,
+    "fields": {
+      "city": "Семей",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 10,
+    "fields": {
+      "city": "Уральск",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 11,
+    "fields": {
+      "city": "Костанай",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 12,
+    "fields": {
+      "city": "Кызылорда",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 13,
+    "fields": {
+      "city": "Актау",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 14,
+    "fields": {
+      "city": "Темиртау",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 15,
+    "fields": {
+      "city": "Туркестан",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 16,
+    "fields": {
+      "city": "Кокшетау",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 17,
+    "fields": {
+      "city": "Талдыкорган",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 18,
+    "fields": {
+      "city": "Атырау",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 19,
+    "fields": {
+      "city": "Экибастуз",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 20,
+    "fields": {
+      "city": "Рудный",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 21,
+    "fields": {
+      "city": "Жезказган",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 22,
+    "fields": {
+      "city": "Аркалык",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 23,
+    "fields": {
+      "city": "Балхаш",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 24,
+    "fields": {
+      "city": "Риддер",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 25,
+    "fields": {
+      "city": "Шу",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 26,
+    "fields": {
+      "city": "Жанаозен",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 27,
+    "fields": {
+      "city": "Сатпаев",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 28,
+    "fields": {
+      "city": "Текели",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 29,
+    "fields": {
+      "city": "Аягоз",
+      "country": 2
+    }
+  },
+  {
+    "model": "profiles.cities",
+    "pk": 30,
+    "fields": {
+      "city": "Сарыагаш",
+      "country": 2
+    }
+  }
+]

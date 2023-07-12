@@ -82,7 +82,7 @@ h1, h2, h3, h4 {
   font-size: 30px;
 }
 
-.email-detail {
+.email-detail, .password-detail {
   padding: 30px;
 }
 
@@ -90,4 +90,56 @@ h1, h2, h3, h4 {
   font-size: 30px;
   border-radius: 15px;
   display: block;
+}
+
+.account-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.errors ul li {
+  list-style: none;
+}
+
+.input-submit {
+  border-radius: 5px;
+  font-size: 20px;
+  color: white;
+  background: #ad69ab;
+}
+
+#upload-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  outline-offset: -12px;
+  background: url("/static/imgs/upload-image.svg");
+  background-size: cover;
+  color: #ad69ab;
+  filter: brightness(70%) sepia(100%);
+}
+
+#upload-image img {
+  width: 40%;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+
+.upload-container div {
+
+}
+
+#upload-container input[type=submit]:focus {
+     outline: -webkit-focus-ring-color auto 5px;
+}
+
+#file-input {
+  font-size: 18px;
+  position: relative;
+
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="header">
+        {% if user.is_authenticated %}
         <ul class="nav-menu">
             <li><a href="{% url 'profiles:profile_view' user.pk %}">Мой профиль</a></li>
             <li><a href="#">Понравившиеся мне</a></li>
@@ -16,6 +17,7 @@
         <ul class="nav-menu">
             <li><a href="{% url 'account:account-detail' user.pk %}">Настройки</a></li>
         </ul>
+        {% endif %}
     </div>
     <div class="content">
         {% block body %}

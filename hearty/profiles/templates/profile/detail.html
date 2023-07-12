@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load static %}
 {% load calc_age %}
 {% load define_gender %}
 
@@ -27,7 +28,15 @@
             <p>Описание профиля: {{ profile.description }}</p>
             <p>Возраст: {{ object.user.bdate|calc_age }}</p>
             <p>Пол: {{ profile.gender|gender }}</p>
+            <p>Город: {{ profile.city }}</p>
             <p>Предпочтения: {{ profile.preferences|gender }}</p>
+        </div>
+        <div class="upload-container">
+            <form id="upload-image" action="{% url 'profiles:upload_image' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ upload_image.as_p }}
+                <input type="submit" value="Загрузить изображение">
+            </form>
         </div>
     </div>
 {% endblock %}

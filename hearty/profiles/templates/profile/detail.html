@@ -24,19 +24,22 @@
                 <button id="display-right">&#10095;</button>
             </div>
         </div>
-        <div class="profile-description">
-            <p>Описание профиля: {{ profile.description }}</p>
-            <p>Возраст: {{ object.user.bdate|calc_age }}</p>
-            <p>Пол: {{ profile.gender|gender }}</p>
-            <p>Город: {{ profile.city }}</p>
-            <p>Предпочтения: {{ profile.preferences|gender }}</p>
-        </div>
-        <div class="upload-container">
-            <form id="upload-image" action="{% url 'profiles:upload_image' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ upload_image.as_p }}
-                <input type="submit" value="Загрузить изображение">
-            </form>
+        <div class="container-profile">
+            <div class="profile-description">
+                <p>Описание профиля: {{ profile.description }}</p>
+                <p>Возраст: {{ object.user.bdate|calc_age }}</p>
+                <p>Пол: {{ profile.gender|gender }}</p>
+                <p>Город: {{ profile.city }}</p>
+                <p>Предпочтения: {{ profile.preferences|gender }}</p>
+            </div>
+            <div class="upload-container">
+
+                <form id="upload-image" action="{% url 'profiles:upload_image' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ upload_image.as_p }}
+                    <input type="submit" value="Загрузить изображение">
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}

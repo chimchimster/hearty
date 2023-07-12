@@ -1,6 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy, reverse
+from django.views import View
 
 from .models import Profile, Images
 from .forms import UploadImageForm
@@ -33,3 +34,6 @@ class UploadImageView(CreateView):
 
         return self.form_invalid(form)
 
+
+class DeleteImageView(View):
+    pass

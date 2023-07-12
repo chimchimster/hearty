@@ -7,7 +7,7 @@ class UploadImageForm(forms.ModelForm):
         model = Images
         fields = ['image']
         widgets = {
-            'image': forms.FileInput(attrs={'id': 'file-input'})
+            'image': forms.FileInput(attrs={'id': 'file-input', 'style': 'opacity: 0;'})
         }
         labels = {
             'image': '',

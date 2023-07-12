@@ -36,4 +36,12 @@ class UploadImageView(CreateView):
 
 
 class DeleteImageView(View):
-    pass
+    def post(self, request, *args, **kwargs):
+        image_id = request.POST.get('image_id')
+
+        try:
+            image = Images.objects.get(id=image_id)
+            image.delete()
+            return redirect('profiles:profile_view', pk=request.user.pk)
+        except Images.DoesNotExist:
+            return HttpResponse('Image does not exist.')

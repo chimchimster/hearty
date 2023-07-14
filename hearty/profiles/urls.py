@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ProfileView, UploadImageView, DeleteImageView, Swipes
+from .views import ProfileView, UploadImageView, DeleteImageView, Swipes, ProfileLikeView
 
 app_name = 'profiles'
 
@@ -8,4 +8,5 @@ urlpatterns = [
     path('upload_image/', UploadImageView.as_view(), name='upload_image'),
     path('delete_image/', DeleteImageView.as_view(), name='delete_image'),
     path('swipes/', Swipes.as_view(), name='swipes'),
+    path('like/', ProfileLikeView.as_view(), name='like'),
 ]

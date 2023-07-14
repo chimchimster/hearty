@@ -59,3 +59,24 @@ class Countries(models.Model):
 
     def __str__(self):
         return self.country
+
+
+class Like(models.Model):
+    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sent_likes', verbose_name='Отправитель')
+    receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='received_likes', verbose_name='Получатель')
+
+    def __str__(self):
+        return f'Лайк {self.receiver} от {self.sender}'
+
+    class Meta:
+        verbose_name = 'Лайк'
+        verbose_name_plural = 'Лайки'
+
+
+class Dislike(models.Model):
+    sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sent_dislikes', verbose_name='Отправитель')
+    receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='received_dislikes', verbose_name='Получатель')
+
+    class Meta:
+        verbose_name = 'Дизлайк'
+        verbose_name_plural = 'Дизлайки'

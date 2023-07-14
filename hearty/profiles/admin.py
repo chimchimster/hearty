@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Images, Cities, Countries
+from .models import Profile, Images, Cities, Countries, Like, Dislike
 
 
 @admin.register(Profile)
@@ -21,3 +21,13 @@ class AdminCity(admin.ModelAdmin):
 @admin.register(Countries)
 class AdminCountry(admin.ModelAdmin):
     list_display = ['country']
+
+
+@admin.register(Like)
+class AdminLike(admin.ModelAdmin):
+    list_display = ['sender', 'receiver']
+
+
+@admin.register(Dislike)
+class AdminDislike(admin.ModelAdmin):
+    list_display = ['sender', 'receiver']

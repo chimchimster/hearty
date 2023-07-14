@@ -15,11 +15,11 @@
     <div class="profile-detail">
         <div class="images-list">
             <div class="image-container">
-                {% with image=profile.images.all %}
-                    {% if not image %}
+                {% with images=profile.images.all %}
+                    {% if not images %}
                         <img class="no-image" src="{% static 'imgs/no-image.png' %}">
                     {% else %}
-                        {% for img in image %}
+                        {% for img in images %}
                             <img class="image-slides" src="{{ img.image.url }}">
                             <form class="delete-image-form" method="POST" action="{% url 'profiles:delete_image' %}">
                                 {% csrf_token %}

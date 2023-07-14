@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views import View
 
-from .models import Profile, Images
-from .forms import UploadImageForm
+from .models import Profile, Images, Like
+from .forms import UploadImageForm, LikeProfileForm, DislikeProfileForm
 from django.views.generic import DetailView, CreateView, ListView
 
 
@@ -14,6 +14,7 @@ class ProfileView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['upload_image'] = UploadImageForm
+        context['dislike_profile'] = DislikeProfileForm
         return context
 
 
@@ -52,5 +53,23 @@ class Swipes(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
-
+        context['like_profile'] = LikeProfileForm
         return context
+
+    def get_queryset(self):
+        profiles = Profile.objects.all().filter(gender__in=self.request.user.profile.preferences).exclude(pk=self.request.user.pk)
+        return profiles
+
+
+class ProfileLikeView(View):
+    def post(self, request, *args, **kwargs):
+
+        receiver_pk = request.POST.get('user')
+        sender_pk = request.user.pk
+
+        receiver_profile_instance = Profile.objects.get(pk=receiver_pk)
+        sender_profile_instance = Profile.objects.get(pk=sender_pk)
+
+        like = Like.objects.create(receiver=receiver_profile_instance, sender=sender_profile_instance)
+        like.save()
+        return HttpResponse()

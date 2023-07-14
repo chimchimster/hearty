@@ -5,7 +5,23 @@
 {% endblock %}
 
 {% block body %}
+    <div class="swipe-container">
     {% for object in object_list %}
-        {{ object }}
+        {% with images=object.user.profile.images.all %}
+            {% for img in images %}
+                <img src="{{ img.image.url }}">
+                <form action="{% url 'profile:like' %}" method="post">
+                    {% csrf_token %}
+                    {{ like_profile.as_p }}
+                    <input type="hidden" name="user" value="{{ object.user.pk }}">
+                    <input type="submit" value="Нравится">
+                </form>
+                <form action="." method="post">
+                    {% csrf_token %}
+                    {{ dislike_profile.as_p }}
+                </form>
+            {% endfor %}
+        {% endwith %}
     {% endfor %}
+    </div>
 {% endblock %}

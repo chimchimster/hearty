@@ -1,5 +1,5 @@
 from django import forms
-from .models import Images, Profile
+from .models import Images, Like, Dislike
 
 
 class UploadImageForm(forms.ModelForm):
@@ -12,3 +12,15 @@ class UploadImageForm(forms.ModelForm):
         labels = {
             'image': '',
         }
+
+
+class LikeProfileForm(forms.ModelForm):
+    class Meta:
+        model = Like
+        fields = []
+
+
+class DislikeProfileForm(forms.ModelForm):
+    class Meta:
+        model = Dislike
+        fields = []

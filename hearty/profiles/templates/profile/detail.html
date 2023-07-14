@@ -45,7 +45,7 @@
                 <form id="upload-image" action="{% url 'profiles:upload_image' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ upload_image.as_p }}
-                    <input type="submit" value="Загрузить изображение">
+                    <input class="simple-input" type="submit" value="Загрузить изображение">
                 </form>
             </div>
         </div>

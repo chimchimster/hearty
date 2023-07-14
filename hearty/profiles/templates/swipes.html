@@ -1,5 +1,5 @@
 {% extends 'layout.html' %}
-
+{% load calc_age %}
 {% block title %}
 
 {% endblock %}
@@ -9,19 +9,61 @@
     {% for object in object_list %}
         {% with images=object.user.profile.images.all %}
             {% for img in images %}
-                <img src="{{ img.image.url }}">
-                <form action="{% url 'profile:like' %}" method="post">
-                    {% csrf_token %}
-                    {{ like_profile.as_p }}
-                    <input type="hidden" name="user" value="{{ object.user.pk }}">
-                    <input type="submit" value="Нравится">
-                </form>
-                <form action="." method="post">
-                    {% csrf_token %}
-                    {{ dislike_profile.as_p }}
-                </form>
+                <div class="swipe-profile">
+                    <img src="{{ img.image.url }}">
+                    <div class="buttons-swipe">
+                        <form action="{% url 'profile:dislike' %}" method="post">
+                            {% csrf_token %}
+                            {{ dislike_profile.as_p }}
+                            <input type="hidden" name="user" value="{{ object.user.pk }}">
+                            <input class="swipe-dislike" type="submit" value="Не нравится" onclick="showProfile();">
+                        </form>
+                        <form action="{% url 'profile:like' %}" method="post">
+                            {% csrf_token %}
+                            {{ like_profile.as_p }}
+                            <input type="hidden" name="user" value="{{ object.user.pk }}">
+                            <input class="swipe-like" type="submit" value="Нравится" onclick="showProfile();">
+                        </form>
+                    </div>
+                </div>
+                <div class="profile-swipe-description">
+                    <p>{{ object.user.first_name }} {{ object.user.last_name }}</p>
+                    <p>Описание: {{ object.user.profile.description }}</p>
+                    <p>Возраст: {{ object.user.bdate|calc_age }}</p>
+                    <p>Город: {{ object.user.profile.city }}</p>
+                </div>
             {% endfor %}
         {% endwith %}
     {% endfor %}
     </div>
+{% endblock %}
+
+{% block domready %}
+    let profiles = document.getElementsByClassName('swipe-profile');
+    let profiles_description = document.getElementsByClassName('profile-swipe-description');
+    let counter = 1;
+
+    const profilesArray = Array.from(profiles);
+    const profilesDescriptionArray = Array.from(profiles_description)
+
+    if (counter == profilesArray.length + 1) {
+        let container = document.getElementsByClassName('swipe-container');
+        console.log(container);
+        container[0].innerHTML = '<h1>Кажется, доступные профили закончились :( Зайдите послезавтра!</h1>';
+        container[0].style.margin = '30px';
+        container[0].style.padding = '30px';
+    }
+
+    for (let i = counter; i < profilesArray.length; i++) {
+        profilesArray[i].style.display = 'none';
+        profilesDescriptionArray[i].style.display = 'none';
+    }
+
+    function showProfile() {
+        counter += 1;
+        profilesArray[counter].style.display = 'block';
+        profilesDescriptionArray[counter].style.display = 'block';
+
+    }
+
 {% endblock %}

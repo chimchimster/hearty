@@ -77,6 +77,9 @@ class Dislike(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sent_dislikes', verbose_name='Отправитель')
     receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='received_dislikes', verbose_name='Получатель')
 
+    def __str__(self):
+        return f'Дизлайк {self.receiver} от {self.sender}'
+
     class Meta:
         verbose_name = 'Дизлайк'
         verbose_name_plural = 'Дизлайки'

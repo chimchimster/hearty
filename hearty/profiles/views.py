@@ -1,8 +1,9 @@
+from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views import View
 
-from .models import Profile, Images, Like
+from .models import Profile, Images, Like, Dislike
 from .forms import UploadImageForm, LikeProfileForm, DislikeProfileForm
 from django.views.generic import DetailView, CreateView, ListView
 
@@ -57,7 +58,15 @@ class Swipes(ListView):
         return context
 
     def get_queryset(self):
-        profiles = Profile.objects.all().filter(gender__in=self.request.user.profile.preferences).exclude(pk=self.request.user.pk)
+
+        user_profile = self.request.user.profile
+        liked_profiles = user_profile.sent_likes.values_list('receiver__pk', flat=True)
+        disliked_profiles = user_profile.sent_dislikes.values_list('receiver__pk', flat=True)
+
+        profiles = Profile.objects.filter(
+            Q(gender__in=user_profile.preferences) & ~Q(pk=self.request.user.pk)
+            & ~Q(pk__in=liked_profiles) & ~Q(pk__in=disliked_profiles)
+        )
         return profiles
 
 
@@ -72,4 +81,25 @@ class ProfileLikeView(View):
 
         like = Like.objects.create(receiver=receiver_profile_instance, sender=sender_profile_instance)
         like.save()
-        return HttpResponse()
+
+        return redirect('profiles:swipes')
+
+
+class ProfileDislikeView(View):
+    def post(self, request, *args, **kwargs):
+
+        receiver_pk = request.POST.get('user')
+        sender_pk = request.user.pk
+
+        receiver_profile_instance = Profile.objects.get(pk=receiver_pk)
+        sender_profile_instance = Profile.objects.get(pk=sender_pk)
+
+        dislike = Dislike.objects.create(receiver=receiver_profile_instance, sender=sender_profile_instance)
+        dislike.save()
+
+        return redirect('profiles:swipes')
+
+
+class ProfileInSympathyView(ListView):
+    model = Profile
+    template_name = 'sympathy.html'

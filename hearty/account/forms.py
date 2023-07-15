@@ -1,10 +1,12 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 from .models import User
 from phone_field import PhoneField
 from datetime import datetime
 
 
-class RegisterUserForm(forms.ModelForm):
+class RegisterUserForm(UserCreationForm):
 
     start_year = datetime.today().year - 18
 
@@ -30,7 +32,7 @@ class RegisterUserForm(forms.ModelForm):
         return cd['password2']
 
 
-class LoginUserForm(forms.ModelForm):
+class LoginUserForm(AuthenticationForm):
     class Meta:
         model = User
         fields = ['email', 'password']

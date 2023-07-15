@@ -6,7 +6,14 @@
 {% endblock %}
 
 {% block body %}
-    {% for object in object_list %}
-        {{ object }}
-    {% endblock %}
+    <div class="list-of-sympathy">
+        {% for object in object_list %}
+            <div class="sympathy-object">
+                {% with image=object.user.profile.images.first %}
+                    <img class="tumbnail-image" src="{{ image.image.url }}">
+                    <a href="{% url 'profile:profile_view' object.user.pk %}">{{ object.user.first_name }}</a>
+                {% endwith %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

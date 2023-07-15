@@ -100,6 +100,37 @@ class ProfileDislikeView(View):
         return redirect('profiles:swipes')
 
 
-class ProfileInSympathyView(ListView):
+class ProfileOwnSympathyView(ListView):
     model = Profile
     template_name = 'sympathy.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
+
+        user_pk = self.request.user.pk
+
+        likes = Like.objects.filter(sender=user_pk)
+        likes_pk = [x.receiver for x in likes]
+        profiles_liked = Profile.objects.filter(pk__in=likes_pk)
+
+        context['object_list'] = profiles_liked
+
+        return context
+
+
+class ProfileOtherSympathyView(ListView):
+    model = Profile
+    template_name = 'sympathy.html'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(object_list=None, **kwargs)
+
+        user_pk = self.request.user.pk
+
+        likes = Like.objects.filter(receiver=user_pk)
+        likes_pk = [x.sender for x in likes]
+        profiles_liked_my_profile = Profile.objects.filter(pk__in=likes_pk)
+
+        context['object_list'] = profiles_liked_my_profile
+
+        return context

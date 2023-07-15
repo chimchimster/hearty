@@ -1,6 +1,6 @@
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, get_object_or_404
 from django.views import View
 from .signals import create_like_notification
 
@@ -141,3 +141,10 @@ class ProfileOtherSympathyView(ListView):
         context['object_list'] = profiles_liked_my_profile
 
         return context
+
+
+def mark_notification_as_read(request, notification_id):
+    notification = get_object_or_404(Notification, id=notification_id)
+    notification.is_read = True
+    notification.save()
+    return redirect('profiles:swipes')

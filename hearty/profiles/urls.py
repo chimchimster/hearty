@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 app_name = 'profiles'
 
 urlpatterns = [
@@ -12,4 +13,5 @@ urlpatterns = [
     path('dislike/', views.ProfileDislikeView.as_view(), name='dislike'),
     path('my_sympathy/', views.ProfileOwnSympathyView.as_view(), name='my_sympathy'),
     path('other_sympathy/', views.ProfileOtherSympathyView.as_view(), name='other_sympathy'),
+    path('notification_has_been_read/<int:notification_id>', views.mark_notification_as_read, name='notification_has_been_read'),
 ]

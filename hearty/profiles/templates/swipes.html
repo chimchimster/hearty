@@ -44,6 +44,11 @@
             {% endfor %}
         {% endwith %}
     {% endfor %}
+    {% if user_notifications %}
+        {% for notification in user_notifications %}
+            {{ notification }}
+        {% endfor %}
+    {% endif %}
     </div>
 {% endblock %}
 

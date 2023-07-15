@@ -64,6 +64,8 @@ class Countries(models.Model):
 class Like(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sent_likes', verbose_name='Отправитель')
     receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='received_likes', verbose_name='Получатель')
+    sender_profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'Лайк {self.receiver} от {self.sender}'
@@ -76,6 +78,7 @@ class Like(models.Model):
 class Dislike(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sent_dislikes', verbose_name='Отправитель')
     receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='received_dislikes', verbose_name='Получатель')
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'Дизлайк {self.receiver} от {self.sender}'
@@ -83,3 +86,16 @@ class Dislike(models.Model):
     class Meta:
         verbose_name = 'Дизлайк'
         verbose_name_plural = 'Дизлайки'
+
+
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    message = models.CharField(max_length=255, verbose_name='Сообщение')
+    is_read = models.BooleanField(default=False, verbose_name='Прочитано')
+
+    def __str__(self):
+        return self.message
+
+    class Meta:
+        verbose_name = 'Уведомление'
+        verbose_name_plural = 'Уведомления'

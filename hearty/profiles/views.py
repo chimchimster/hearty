@@ -2,8 +2,9 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views import View
+from .signals import create_like_notification
 
-from .models import Profile, Images, Like, Dislike
+from .models import Profile, Images, Like, Dislike, Notification
 from .forms import UploadImageForm, LikeProfileForm, DislikeProfileForm
 from django.views.generic import DetailView, CreateView, ListView
 
@@ -55,6 +56,10 @@ class Swipes(ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         context['like_profile'] = LikeProfileForm
+
+        user_notifications = Notification.objects.filter(user=self.request.user, is_read=False)
+        context['user_notifications'] = user_notifications
+
         return context
 
     def get_queryset(self):
@@ -81,6 +86,8 @@ class ProfileLikeView(View):
 
         like = Like.objects.create(receiver=receiver_profile_instance, sender=sender_profile_instance)
         like.save()
+
+        create_like_notification(sender=request.user, instance=like, created=True)
 
         return redirect('profiles:swipes')
 

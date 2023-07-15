@@ -1,14 +1,20 @@
 import re
 
+from django.contrib.auth import logout
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.shortcuts import render
 
 from .models import User
 from .forms import RegisterUserForm, ChangeEmailForm, ChangePasswordForm
 
+from .mixins import CreateProfileMixin
+
 from django.urls import reverse_lazy, reverse
 from django.views.generic import View, CreateView, DetailView
 from django.contrib.auth.views import LoginView
+
+from profiles.models import Profile
 
 
 class AccountDetailView(DetailView):
@@ -24,14 +30,30 @@ class AccountDetailView(DetailView):
         return context
 
 
-class RegisterUser(CreateView):
+class RegisterUser(CreateView, CreateProfileMixin):
     form_class = RegisterUserForm
     template_name = 'account/register.html'
     success_url = reverse_lazy('account:login')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        self.create_profile(self.object)
+
+        return response
+
 
 class LoginUser(LoginView):
     template_name = 'account/login.html'
+
+    def get_success_url(self):
+        return reverse_lazy('profiles:swipes')
+
+
+def logout_view(request):
+    logout(request)
+
+    return render(request, 'account/index.html')
 
 
 class ChangeEmailView(View):

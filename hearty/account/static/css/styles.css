@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 body {
-  font-family: Muli, sans-serif, serif;
+  font-family: Muli, sans-serif, serif !important;
+  font-size: 20px;
   padding: 0px;
   margin: 0px;
 }
@@ -250,6 +251,104 @@ img {
 }
 
 .profile-swipe-description {
-  font-size: 30px;
   padding: 30px;
+  margin: 20px 50px 40px 20px;
+  border: 3px solid #ad69ab;
+  width: 100%;
+  background: #ad69ab;
+  position: relative;
+}
+
+.description-field.name {
+  font-size: 30px;
+  font-weight: bold;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+  position: absolute;
+  left: 700px;
+  top: 60px;
+}
+
+.description-field.name:hover {
+  animation-name: bounce;
+  animation-timing-function: ease;
+}
+
+@keyframes bounce {
+  0% {
+        transform: translateY(0);
+    }
+  50% {
+        transform: translateY(-5px);
+    }
+  100% {
+        transform: translateY(0);
+    }
+}
+
+.description-field.name a {
+  color: #f9e277;
+  text-decoration: none;
+}
+
+.description-field.age {
+  font-size: 30px;
+  position: absolute;
+  top: 120px;
+  left: 700px;
+}
+
+.description-field.city {
+  font-size: 30px;
+  position: absolute;
+  top: 180px;
+  left: 700px;
+}
+
+.description-field.description {
+  width: 50%;
+  height: 350px;
+  background: inherit;
+  position: absolute;
+  top: 300px;
+  left: 700px;
+  border: 4px solid #f9e277;
+  border-radius: 5px;
+  filter: drop-shadow(7px 7px 7px #f9e277);
+  padding: 30px;
+}
+
+.tumbnail-image {
+  width: 250px;
+  height: 500px;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  border-radius: 100px;
+}
+
+.list-of-sympathy {
+  display: grid;
+  grid-template-columns: 370px 370px 370px 370px auto;
+}
+
+.sympathy-object {
+  margin: 30px;
+  width: calc(100% - 60px);
+  position: relative;
+}
+
+.sympathy-object a {
+  position: absolute;
+  font-weight: bold;
+  left: 60px;
+  bottom: 120px;
+}
+
+.sympathy-object a:link,
+.sympathy-object a:visited {
+  font-size: 65px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #f9e277;
 }

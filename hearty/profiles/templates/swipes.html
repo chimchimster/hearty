@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% load calc_age %}
+{% load unique_age %}
 {% block title %}
 
 {% endblock %}
@@ -9,7 +10,8 @@
     {% for object in object_list %}
         {% with images=object.user.profile.images.all %}
             {% for img in images %}
-                <div class="swipe-profile">
+                <div class="profile-swipe-description">
+                    <div class="swipe-profile">
                     <img src="{{ img.image.url }}">
                     <div class="buttons-swipe">
                         <form action="{% url 'profile:dislike' %}" method="post">
@@ -26,11 +28,18 @@
                         </form>
                     </div>
                 </div>
-                <div class="profile-swipe-description">
-                    <p>{{ object.user.first_name }} {{ object.user.last_name }}</p>
-                    <p>Описание: {{ object.user.profile.description }}</p>
-                    <p>Возраст: {{ object.user.bdate|calc_age }}</p>
-                    <p>Город: {{ object.user.profile.city }}</p>
+                    <div class="description-field name">
+                        <a href="{% url 'profiles:profile_view' object.user.pk %}"><p>{{ object.user.first_name }} {{ object.user.last_name }}</p></a>
+                    </div>
+                    <div class="description-field age">
+                        <p>{{ object.user.bdate|calc_age|unique_age }}</p>
+                    </div>
+                    <div class="description-field city">
+                        <p>из города {{ object.user.profile.city }}</p>
+                    </div>
+                    <div class="description-field description">
+                        <p>Описание: {{ object.user.profile.description }} {% lorem%}</p>
+                    </div>
                 </div>
             {% endfor %}
         {% endwith %}

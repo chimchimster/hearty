@@ -11,6 +11,9 @@ class Chat(models.Model):
         return f'Чат {self.pk}'
 
     class Meta:
+        app_label = 'messaging'
+        db_table = 'messaging_chat'
+        managed = True
         verbose_name = 'Чат'
         verbose_name_plural = 'Чаты'
 
@@ -25,5 +28,8 @@ class Message(models.Model):
         return f'Сообщение {self.pk} от пользователя {self.sender.email} в чате {self.chat}'
 
     class Meta:
+        app_label = 'messaging'
+        db_table = 'messaging_message'
+        managed = True
         verbose_name = 'Сообщение'
         verbose_name_plural = 'Сообщения'

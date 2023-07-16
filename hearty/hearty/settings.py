@@ -92,6 +92,8 @@ DATABASES = {
             'port': 27017,
             'username': os.environ.get('mongodb_username'),
             'password': os.environ.get('mongodb_password'),
+            'authSource': os.environ.get('mongodb_db_name'),
+            'authMechanism': 'SCRAM-SHA-1'
         },
         'NAME': os.environ.get('mongodb_db_name'),
     }

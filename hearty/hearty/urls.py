@@ -16,11 +16,12 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
+from messaging import routing
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls', namespace='account')),
     path('profile/', include('profiles.urls', namespace='profile')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('ws/', include(routing.websocket_urlpatterns)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

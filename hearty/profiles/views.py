@@ -3,13 +3,13 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404
 from django.views import View
 from .signals import create_like_notification
-
+from account.mixins import NotificationMixin
 from .models import Profile, Images, Like, Dislike, Notification
 from .forms import UploadImageForm, LikeProfileForm, DislikeProfileForm
 from django.views.generic import DetailView, CreateView, ListView
 
 
-class ProfileView(DetailView):
+class ProfileView(NotificationMixin, DetailView):
     model = Profile
     template_name = 'profile/detail.html'
 
@@ -49,16 +49,13 @@ class DeleteImageView(View):
             return HttpResponse('Image does not exist.')
 
 
-class Swipes(ListView):
+class Swipes(NotificationMixin, ListView):
     model = Profile
     template_name = 'swipes.html'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=None, **kwargs)
         context['like_profile'] = LikeProfileForm
-
-        user_notifications = Notification.objects.filter(user=self.request.user, is_read=False)
-        context['user_notifications'] = user_notifications
 
         return context
 
@@ -87,12 +84,12 @@ class ProfileLikeView(View):
         like = Like.objects.create(receiver=receiver_profile_instance, sender=sender_profile_instance)
         like.save()
 
-        create_like_notification(sender=request.user, instance=like, created=True)
+        # create_like_notification(sender=request.user, instance=like, created=True)
 
         return redirect('profiles:swipes')
 
 
-class ProfileDislikeView(View):
+class ProfileDislikeView(NotificationMixin, View):
     def post(self, request, *args, **kwargs):
 
         receiver_pk = request.POST.get('user')
@@ -107,7 +104,7 @@ class ProfileDislikeView(View):
         return redirect('profiles:swipes')
 
 
-class ProfileOwnSympathyView(ListView):
+class ProfileOwnSympathyView(NotificationMixin, ListView):
     model = Profile
     template_name = 'sympathy.html'
 
@@ -125,7 +122,7 @@ class ProfileOwnSympathyView(ListView):
         return context
 
 
-class ProfileOtherSympathyView(ListView):
+class ProfileOtherSympathyView(NotificationMixin, ListView):
     model = Profile
     template_name = 'sympathy.html'
 

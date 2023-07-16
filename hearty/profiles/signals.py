@@ -3,12 +3,11 @@ from django.dispatch import receiver
 from .models import Like, Notification
 
 
-@receiver(post_save, sender=Like.sender)
+@receiver(post_save, sender=Like)
 def create_like_notification(sender, instance, created, **kwargs):
     if created:
-        print(instance)
-        sender_profile = instance.sender
 
+        sender_profile = instance.sender
         receiver_profile = instance.receiver
 
         notification_message = f"Вы понравились {sender_profile}!"

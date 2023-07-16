@@ -30,6 +30,25 @@
         {% block body %}
         {% endblock %}
     </div>
+    <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div class="dropdown-content">
+                {% if user_notifications %}
+                    {% for notification in user_notifications %}
+                        <div class="notification">
+                            <p>{{ notification.message }}</p>
+                            {% if not notification.is_read %}
+                                <a href="{% url 'profiles:notification_has_been_read' notification.id %}">X</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="notification">
+                            <p align="center">Уведомлений нет</p>
+                        </div>
+                {% endif %}
+            </div>
+        </div>
 </body>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

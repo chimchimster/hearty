@@ -44,16 +44,6 @@
             {% endfor %}
         {% endwith %}
     {% endfor %}
-    {% if user_notifications %}
-        {% for notification in user_notifications %}
-            <div class="notification {% if notification.is_read %}read{% endif %}">
-                <p>{{ notification.message }}</p>
-                {% if not notification.is_read %}
-                    <a href="{% url 'profiles:notification_has_been_read' notification.id %}">Mark as Read</a>
-                {% endif %}
-            </div>
-        {% endfor %}
-    {% endif %}
     </div>
 {% endblock %}
 
